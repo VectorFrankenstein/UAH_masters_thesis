@@ -1,0 +1,82 @@
+\chapter{Chapter 4. Methods}
+
+I focus on quantifying and qualifying genomic changes taking place along specific branches of phylogenies. The foundational data for this research comes from homology inference, i.e. the discovery of genes sets/families across species with shared ancestry. With in genomic homology, there are two major kinds of relationships: Orthology i.e. genes connected by a speciation event and paralogy, i.e. genes connected by a gene duplication events, mostly within species but possible across species \cite{Jensen2001-yf}.The initial goal is to determine if any gene family (orthogroup i.e. an orthologous gene family) has undergone a significant expansion or contraction in copy number in the ancestors of each of the three heterosporous lineages. I will next use an analysis of selection to determine if and gene families have undergone an unusual amount of directional selection on these same three lineages.  Results from either of these could help provide clues, in the form of possible gene function, as to why genome downsizing might be associated with heterospory. The quantification of the genomic changes required the reconstruction of copy number variation in a phylogenetic context and testing branches of interest on gene phylogenies for natural selection, calculated based on the ratio of non-synonymous substitutions against synonymous substitutions.
+
+\section{Sample Selection}
+
+Selection of taxa was guided and constrained by several factors. Pilot tests suggested that I could handle about 100 transcriptomes computationally for downstream analysis such as homology inference, gene family reconstruction in a phylogenetic context, heuristics based gene-tree inference and selection analysis.. Because the goal was to explore unique changes on heterosporous lineages, I needed to ensure that each of the three extant heterosporous lineages were represented. This necessarily required reducing seed plants to a skeleton of samples, whereas heterosporous ferns and lycophytes were represented as much as possible because there are fewer species and fewer available transcriptomes. I also ensured that homosporous taxa were sampled extensively to provide phylogenetic context, including evenly throughout the homosporous lycophytes and ferns. In addition, I included outgroup samples from the three main bryophyte lineages. The complete list of transcriptomes used is \href{https://uah0-my.sharepoint.com/:x:/g/personal/rrd0009_uah_edu/ERrv2rtJLe9EqJFMda1X7TQBX8BZpV3mMbJMVwOvgfyrFw?e=kD5W1O}{supplemental materials}.
+
+\section{Obtaining genomic information}
+
+The transcripts were obtained from three different sources: \cite{One_Thousand_Plant_Transcriptomes_Initiative2019-gy}, \cite{Marchant2021-kp}, and \cite{Pelosi2022-rr}. 
+The following table shows the distribution of species counts across species:
+
+\begin{table}[]
+	\centering
+	\resizebox{\textwidth}{!}{%
+	\begin{tabular}{|l|l|}
+	\hline
+	Source                                              & Number of species from source \\ \hline
+	\cite{One_Thousand_Plant_Transcriptomes_Initiative2019-gy} & 102                           \\ \hline
+	\cite{Pelosi2022-rr}                                & 4                             \\ \hline
+	\cite{Marchant2021-kp}                              & 5                             \\ \hline
+	\end{tabular}%
+	}
+	\caption{The distribution of the numbers of samples across their sources.
+	}
+	\label{Table 41}
+	\end{table}
+
+Automation was used when retrieving transcriptome files from their respective repositories to minimize human error. I accessed files that were outside of the onekp using manual steps.
+
+\section{Orthology inference}
+
+Given the goal of exploring similarities and differences across a list of taxon, homology inference was the preliminary step. Homology inference is the identification of genes with shared ancestry within and across species. This inference is primarily based on sequence similarity, using OrthoFinder \cite{Emms2019-cd} version 2.5.4. OrthoFinder was run with default configurations. A total of 30888 orthogroups were identified. Out of 2091844 genes, OrthoFinder assigned 2054931 (98.2 \%) genes to orthogroups against 36913 (1.2\%) genes it could not assign to orthogroups. 
+Only 613 (1.97\%) orthogroups contained genes of all species involved against 15117(48.5\%) orthogroups containing two or fewer species.
+
+See \href{https://uah0-my.sharepoint.com/:u:/g/personal/rrd0009_uah_edu/EYwE1_Ily2tEgZk_5hVrbNEBbfiQMsVX4kDM_fsiLFfW1w?e=JTC0gY}{supplemental data} for the complete details on the output of the orthofinder run.
+
+\section{Species tree inference}
+
+The species tree for the species list was generated using STAG and STRIDE. STAG generates an unrooted species tree that accounts for multi-copy gene families, and STRIDE can root the unrooted species tree. See \href{https://uah0-my.sharepoint.com/:t:/g/personal/rrd0009_uah_edu/EZEuafSHfk1OpZBgF09rZcgBoKeu_35QB_noYEs5zCyLQg?e=De2IOj}{supplemental material} to see the final tree in newick format. The tree generated using this method, when illustrated with ggtree, looks as follows:
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth, height=16cm]{Figures/Species_tree.png}
+    \caption[An illustration of the binary, rooted, ultrametric tree used as the base species tree.
+	(Note: The image is painfully miniscule and I have not been able to get ggtree to work just right but here is a link to a pdf that is easier to look at and zoom into)
+	]{An illustration of the binary, rooted, ultrametric tree used as the base species tree.
+	(Note: The image is painfully miniscule and I have not been able to get ggtree to work just right but here is a link to a pdf that is easier to look at and zoom into)
+	}
+    \label{fig 4.1}
+\end{figure}
+
+\section{Gene family expansion and contraction inference}
+
+CAFE5 \cite{Mendes2020-gm} was used to generate preliminary data on gene family expansions and contractions. CAFE5 first estimates a global rate of change of evolution ‘lambda’ and then uses that lambda in its implementation of maximum likelihood estimation to reconstruct the evolution of gene families throughout the phylogeny. CAFE5 was initially used with default configurations against all gene families generated by Orthofinder and the species tree generated by STAG and STRIDE. The exhaustive table of counts for all orthogroups failed to initialize with CAFE5's inference model. With empirical testing, it was found that the issue was that the difference between the smallest count and the largest count for some of the gene families was too large for CAFE5's statistical model. After a few rounds of testing, I found that, for this specific dataset, CAFE5 could not use any gene family where the difference between the smallest and the largest count was over 68. For this dataset, gene families with differences between the counts greater than 68 distort the lambda or the global rate of change of evolution. The distortion to the global lambda makes it look like all the gene families are rapidly evolving and leads to mathematically illegible outcomes within the calculations that CAFE5 uses to reconstruct the numbers within gene families. Once families with differences larger than 68 were filtered out, CAFE5 could generate standard output. 
+
+See \href{https://uah0-my.sharepoint.com/:f:/g/personal/rrd0009_uah_edu/Ei4yllknzK1Pnpm-hP94YRwBiYsHdd3LY2wt4RsgAav8Fg?e=CjITze}{supplemental material} to see the whole of CAFE5’s output.
+
+\section{Selection analysis}
+
+The following methods and steps were involved in the selection analysis of the data:
+
+\section{Multiple sequence alignment and codon alignment}
+
+The methods for selection analysis implemented within this required codon-based data for execution. Therefore, I converted the protein data within gene families into codon alignments. The peptide sequences within each gene family were first aligned using MAFFT \cite{Katoh2002-oe}. I used pal2nal.pl\cite{Suyama2006-xo} to convert the peptide sequence alignments generated by MAFFT, alongside their respective CDS sequences, into codon alignments.
+
+\subsection{Gene tree generation}
+I used IQ-tree2 \cite{Minh2020-dd} to generate gene phylogenies for the codon alignments of each gene family. The gene phylogenies were generated with the following configurations:
+\begin{itemize}
+
+	\item A General Time reversible (GTR) DNA model \cite{Tavare1986-li}.
+	\item Empirical codon frequencies calculated from the data  (which is the default for a GTR DNA model, as implemented in IQ-tree2).
+	\item A proportion of sites were allowed invariably to account for rate heterogeneity across sites. 
+	\item IQtree2 was configured to use 100 non-parametric bootstrap replicates. I used nonparametric bootstrap to speed up tree inference.
+
+Within IQtree-2 version 2.1.2, the above configurations can be re-created using the flags GTR+F+I -b 100.
+\end{itemize}
+
+\subsection{Lineage specific selection analysis}
+
+Because my goal is to ask if there are significant genomic changes specifically on the heterosporous lineages, I used aBSREL\cite{Smith2015-qp} to test the branches/lineages in the gene phylogenies for selection. One of the many natural selection models implemented inside HyPhy, aBSREL is an "improved" reiteration of branch-site selection models that are used to test for selection, not on specific sites but instead along a proportion of sites along branches.

@@ -1,0 +1,117 @@
+\chapter{Chapter 6. Discussion}
+
+\section{Copy number variation analysis}
+
+It has been over 50 years since Klekowski and Baker (1966) first pointed out the
+association between high chromosome numbers in homosporous plants. In a phylogenetic
+context, it now appears that chromosome number reduction has occurred on the lineages leading
+to heterospory. However, the scientific community still lacks a plausible explanation for this
+association of two seemingly unrelated traits. The research goal was to look for signatures of
+evolution that could provide hints about gene families that are playing a significant role in the
+evolutionary dynamic of the correlation between heterosporous spore production. Signatures of
+evolution from gene family expansion or contraction analysis reveal a limited number of parallel
+changes on heterosporous lineages. There were no gene families with significant changes leading
+to all three nodes. For pairwise intersections, there was one gene with significant changes leading
+to heterosporous lycophytes and heterosporous ferns and one gene family that had significant
+changes leading to heterosporous lycophytes and seed plants. There were no intersections
+between seed plants and heterosporous ferns.
+OG0001580 is the one gene family that was shared between heterosporous ferns and
+heterosporous lycophyta. The Arabidopsis thaliana genes present in this homologous family are
+members of the homeobox gene family. The homeobox genes are known to have large effects in
+early morphological development and mutations can lead to some severe homeosis \cite{Gehring1993-mf}. OG0000619 was the one gene family that was shared between seed plants and
+heterosporous lycophyta. The Arabidopsis thaliana genes present in this homologous family are
+known as Hothead genes responsible for floral structure and do not follow Mendelian
+segregation. Hothead genes have roles in determining floral morphology- something closely
+related to spore production, and Hothead genes in Arabidopsis thaliana have been observed to
+undergo non-Mendelian inheritance \cite{Rhee2003-ww} which could trace its causes to meiosis.
+There is some history of research into the non-Mendelian nature of these specific genes archived
+in The Arabidopsis Information Resource (TAIR). Future work should explore these genes and
+the factors involved in more detail.
+Objectively, the genes of this gene family are homeobox genes and hothead genes only in
+Arabidopsis thaliana, and could have completely different molecular and biological roles in
+other species. Albeit the significant expansion of genes on two lineages leading to heterosporous
+warrant further investigation into their biological and molecular function across species.
+
+\section{Selection Analysis}
+
+The study of trait evolution across families of green plants using natural selection data in a
+phylogenetic context requires access to more computational power to generate a greater density
+of data than is currently available. This should not be an issue given the steady progress in data
+generation being made by the computational systems this project has access to.
+
+\section{Limitations of the study}
+
+It is possible for the gene family reconstruction or the associated functions of the gene
+families by CAFE5 to be spurious and entirely random. I used CAFE5 to generate data for
+thousands of families on a large species tree with a deep phylogeny. However, this sample set
+was pushing the limits of the algorithms implemented within CAFE5. Based on direct
+communications with the authors of CAFE5, apparently, the tree was “too large and too deep”.
+For the reconstruction of gene families, for the 9461 families that were successfully
+reconstructed, 40 of the largest families could not be compiled. Those 40 homologous families
+accounted for some tens of thousands of genes, and while there is no promise of good data, it
+was a non-negligible portion of the total data that simply could not be processed. The difficulty
+CAFE5 had in reconstructing gene families, given the size and the depth of the phylogeny,
+reduces confidence in the output and warrants some further investigation with some alternative
+approaches.
+
+Some solutions to the size and depth issues that can simultaneously provide some hints
+about spuriousness in the results:
+
+\begin{itemize}
+
+    \item Compromise the generous phylogenetic background data and use a smaller and shallower
+    species tree. The tree can be made shallower by giving up outgroups but it is currently
+    unclear how effective that can be.
+
+    \item Use multiple lists of taxa with analogous phylogenetic outlines and compare the
+    outcomes between each other. The comparisons between outputs neither exactly provide
+    specificity nor exactly provide specificity, but if there is a difference at all, then it brings
+    the status of the reconstruction into question.
+
+    \item Use parsimony based approaches for gene family reconstruction as opposed to maximum
+    likelihood estimation altogether. Our implementation of MLE in this project was thanks
+    to the robust history of MLE’s capacity to generate data on smaller datasets.
+\end{itemize}
+
+Depending on quality, the transcriptome of a species can be an incomplete representation
+of the genes present in that species. One metric of transcriptome quality is BUSCO \cite{Simao2015-xq}, which is a method to gauge the quality of a genome using single copy orthologous genes,
+where the completeness of a genome can be gauged by comparison against a standardized
+database. BUSCO produces a percentage-based quality score that reflects the completeness of
+any specific sample of sequencing data. The percentage scores reflect the completeness of the
+sample sequencing data. While the taxon list was fairly exhaustive and representative of the
+phylogenetic context, the BUSCO scores for the samples ranged from the low 70s to the high 90s
+in terms of percentage. It is possible that, within that range of transcriptome quality scores across
+the list of taxon, some of the gene families as found by my runs of homology inference, do not
+reflect copy number variation in the gene families with complete accuracy. The range of quality
+of the transcriptomes has a potential to affect CNV and by extension the reconstruction families
+across the phylogeny. We can only gauge the actual size of the impact from the range of BUSCO
+scores with a completely different list of samples. A “simple” solution to this is to use taxa where
+all species have BUSCO scores in the high 90s.
+I built the research in this project around exploring a potential relationship between spore
+production and chromosome numbers, but these two traits could be unrelated. A way to gauge
+the existence of a potential relationship between spore production and chromosome numbers
+would be to expand the current experiment design to include heterosporous nodes alongside
+other nodes where there has been a marked decrease in chromosome numbers without the
+evolution of heterospory.
+The study of homology from the perspective of gene families/orthogroups provides an
+objective avenue to gauge the similarities and differences between species, families, lineages and
+nodes. This comes back to the fact that gene families can be identified, labeled/tagged and easily
+parsed for insights. While objective and easy to implement, looking at phylogenetics with
+well-set gene families misses the possibility of catching similarities in functions shared across or
+between two or more than two different gene families. In other words, it is easy to parse
+information tagged using gene families, but parsing information by the function of gene families
+across different gene families requires a different approach, which so far does not have a
+standardized approach. While a standardized approach is lacking, manual parsing of the results
+in this project is possible, given the small number of gene families to be investigated. As such, a
+manual investigation of the significantly expanding gene families will be a part of the expansion
+of this project.
+The research objectives, built around the hypothesis that the evolution of correlated traits
+in heterosporous lineages probably share a similar history of evolution, were to search for
+similarity in signatures of evolution. Within this sample set and methods, while significantly
+smaller than initially expected, there were two gene families that warrant further investigations
+into their potential role in floral morphology/spore production and related roles in meiosis. When
+I started this project, there were no phylogenetic and genomic insights on the evolution of
+heterospory and its correlation with drops in chromosome numbers from the perspective of gene
+families. The exploratory nature of this study means that the insights collected here require
+further investigation with the use of functional genomics. Nevertheless, this project has provided
+some novel insights that make it possible to approach functional genomics at all.

@@ -1,0 +1,105 @@
+\chapter{Chapter 5. Results}
+
+\section{Copy number variation analysis}
+
+Focusing on the maximum-likelihood based data produced by CAFE5,  I quantified copy number variation at all the nodes of the phylogeny. Of the 221 nodes on the phylogeny, three were the most important to us, each leading up to the 3 extant heterosporous lineages:
+
+\begin{itemize}
+    \item Seed plants
+    \item Heterosporous lycophyta
+    \item Heterosporous ferns
+\end{itemize}
+
+\section{Families with significnt changes on each node}
+
+There were 9 gene families that significantly expanded on the node leading to seed plants, 6 to heterosporous lycophyta and 6 to heterosporous ferns. According to the results produced by CAFE, there are no families where significant change (expansion or contraction) took place in all three of our nodes of interest. However, several changes occurred on one or two of the three lineages.
+
+The following venn-diagram summarizes the dynamic between the nodes further:
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth, height=16cm]{Figures/Shared_families.png}
+    \caption[Numbers of significant gene family copy number contractions or expansions in the three heterosporous clades.
+    ]{Numbers of significant gene family copy number contractions or expansions in the three heterosporous clades.
+    }
+    \label{fig 5.1}
+\end{figure}
+
+According to the gene family reconstruction by CAFE5, I detected 19 gene families with significant expansion and contraction leading to the three heterosporous nodes. The node leading to seed plants had 9 families with significant changes. The Arabidopsis thaliana genes present within these gene families had the following functions:
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    Family ID & Most common function of A. thaliana genes in the family               \\ \hline
+    OG0000053 & F-box family gene most commonly used in leaf morphology determination \\ \hline
+    OG0000080 & Mitochondrial transcription factor                                    \\ \hline
+    OG0000107 & Terpenoid superfamily protein                                         \\ \hline
+    OG0000125 & MATE efflux family protein                                            \\ \hline
+    OG0000159 & A member of the glycoprotein family                                   \\ \hline
+    OG0000191 & A member of the receptor-like protein kinase family                   \\ \hline
+    OG0000245 & \{Missing Arabidopsis genes\}                                         \\ \hline
+    OG0000422 & Mixed Lineage Kinase Domain-like protein                              \\ \hline
+    OG0000619 & Floral-property control gene with non-mendelian segregation.          \\ \hline
+    \end{tabular}
+    \caption{Identity and most common associated function of the families that were expanding significantly on the seed plant node.}
+    \label{Table 5.1}
+    \end{table}
+
+There were 6 gene families that experienced significant change on the nodes leading to the heterosporous lycophyta. The Arabidopsis thaliana genes present within these gene families had the following functions:
+
+\begin{table}[]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|}
+    \hline
+    Family ID & Most common function of A. thaliana genes in the family      \\ \hline
+    OG0000019 & Beta glucosidase gene family.                                \\ \hline
+    OG0000026 & A member of the protein kinase superfamily.                  \\ \hline
+    OG0000174 & Encodes a protein with likely histone demethylation activity. Its mutation can lead to instability in morphological integrity. \\ \hline
+    OG0000563 & A member of the lactone oxidase family                       \\ \hline
+    OG0000619 & Floral-property control gene with non-mendelian segregation. \\ \hline
+    OG0001580 & A member of the Knotted1-like homeobox gene family.          \\ \hline
+    \end{tabular}%
+    }
+    \caption{Identity and most common associated function of the families that were expanding significantly on the heterosporous lycophyta node.}
+    \label{Table 5.2}
+    \end{table}
+
+There were 6 gene families that experienced significant change on the nodes leading to the heterosporous ferns. The Arabidopsis thaliana genes present within these gene families had the following functions:
+
+\begin{table}[]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|}
+    \hline
+    Family ID & Most common function of A. thaliana genes in the family       \\ \hline
+    OG0000277 & Adenine nucleotide alpha hydrolases-like superfamily protein. \\ \hline
+    OG0000861 & A member of the PHO1 family. It is involved in inorganic phosphate transport and homeostasis. \\ \hline
+    OG0000895 & A member of the Cysteine proteinases superfamily              \\ \hline
+    OG0000906 & Ovate family protein                                          \\ \hline
+    OG0001580 & A member of the Knotted1-like homeobox gene family.           \\ \hline
+    OG0002379 & \begin{tabular}[c]{@{}l@{}}DNA polymerase epsilon catalytic\\ subunit.\end{tabular}           \\ \hline
+    \end{tabular}%
+    }
+    \caption{Identity and most common associated function of the families that were expanding significantly on the heterosporous lycophyta node.}
+    \label{Table 53}
+    \end{table}
+
+There was 1 homologous family that saw a statistically significant expansion at both the nodes leading up to both seed plants and heterosporous lycophyta. The name assigned (arbitrarily) to this family was OG0000619. The Arabidopsis thaliana genes present in the homolog either are Glucose-methanol-choline (GMC) oxidoreductase family proteins or hothead genes with observed patterns of non-Mendelian inheritance \cite{Rhee2003-ww}. Whereas the causation behind the non-Mendelian inheritance of these Arabidopsis thaliana genes is unclear, non-Mendelian inheritance can trace its roots back to factors in meiosis \cite{Akera2017-nq}, which are related to chromosome numbers.
+There was 1 homologous family that saw a statistically significant expansion at both the nodes leading up to both heterosporous lycophyta and heterosporous ferns. The name assigned (arbitrarily) to this family was OG00001580. The Arabidopsis thaliana genes present in the homolog  were Class I knotted1-like homeobox gene family members (together with other KNAT genes). Homeobox genes are highly conserved across all of eukaryotic life and have functions in early morphological development. Homeobox mutants can lead to erratic changes (homeosis) in the anatomy \cite{Nam2003-ey}.
+
+\section{Selection analysis data}
+
+There were 3115 homologs with at least 106 species present (out of the 111). From a conservative perspective (estimate?), those 3115 homologous families are viable for selection analysis without losing phylogenetic analogy to the exhaustive species list.
+The nature of the output data generated by the methods I used for natural selection analysis is too “noisy” for manual and visual analysis. Attached is an example of a “small” orthogroup turned into a gene phylogeny can look like:
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth, height=16cm]{Figures/Sample_selection.png}
+    \caption[An example of what the visualization of branh-site selection analysis looks like.]{An example of what the visualization of branh-site selection analysis looks like.}
+    \label{fig 5.2}
+\end{figure}
+
+Within the orthogroups that have been compiled for selection analysis do not so far reveal any
+signs of selection that favor the heterosporous nodes over the homosporous nodes.
